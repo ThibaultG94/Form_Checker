@@ -10,10 +10,12 @@ const errorDisplay = (tag, message, valid) => {
   const span = document.querySelector("." + tag + "-container > span");
 
   if (!valid) {
+    container.classList.remove("success");
     container.classList.add("error");
     span.textContent = message;
   } else {
     container.classList.remove("error");
+    container.classList.add("success");
     span.textContent = message;
   }
 };
@@ -29,7 +31,7 @@ const pseudoChecker = (value) => {
     );
     pseudo = null;
   } else {
-    errorDisplay("pseudo", "", true);
+    errorDisplay("pseudo", "Pseudo disponible", true);
     pseudo = value;
   }
 };
@@ -59,11 +61,11 @@ const passwordChecker = (value) => {
     progressBar.classList.add("progressRed");
     password = null;
   } else if (value.length < 12) {
-    errorDisplay("password", "", true);
+    errorDisplay("password", "Sécurité moyenne", true);
     progressBar.classList.add("progressBlue");
     password = null;
   } else {
-    errorDisplay("password", "", true);
+    errorDisplay("password", "Sécurité forte", true);
     progressBar.classList.add("progressGreen");
     password = value;
   }

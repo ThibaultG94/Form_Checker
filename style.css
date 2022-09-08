@@ -107,6 +107,12 @@ input[type="submit"]:hover {
     color: red;
 }
 
+.success span {
+    visibility: visible;
+    opacity: 1;
+    color: #51df91;
+}
+
 .progressRed {
     background: red;
     width: 33%;
