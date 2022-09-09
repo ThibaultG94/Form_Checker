@@ -21,7 +21,9 @@ const errorDisplay = (tag, message, valid) => {
 };
 
 const pseudoChecker = (value) => {
-  if (value.length > 0 && (value.length < 3 || value.length > 20)) {
+  if (value.length === 0) {
+    errorDisplay("pseudo", "");
+  } else if (value.length > 0 && (value.length < 3 || value.length > 20)) {
     errorDisplay("pseudo", "Le pseudo doit faire entre 3 et 20 caractères");
     pseudo = null;
   } else if (!value.match(/^[a-zA-Z0-9_.-]*$/)) {
@@ -31,7 +33,10 @@ const pseudoChecker = (value) => {
     );
     pseudo = null;
   } else {
-    errorDisplay("pseudo", "Pseudo disponible", true);
+    errorDisplay("pseudo", "", true);
+    setTimeout(() => {
+      errorDisplay("pseudo", "Pseudo disponible", true);
+    }, 1000);
     pseudo = value;
   }
 };
@@ -121,6 +126,8 @@ form.addEventListener("submit", (e) => {
     email = null;
     password = null;
     confirmPass = null;
+    document.querySelector(".pseudo-container > span").textContent = "";
+    document.querySelector(".password-container > span").textContent = "";
     alert("Inscription validée !");
   } else {
     alert("Veuillez remplir correctement les champs");
